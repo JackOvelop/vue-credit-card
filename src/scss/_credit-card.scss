@@ -1,0 +1,189 @@
+@import "./mixins/all";
+@import "~animate.css";
+
+#credit-card {
+  position: sticky;
+  top: 0;
+  margin: auto;
+  max-width: 430px;
+  font-family: "Source Code Pro", monospace;
+  color: $white;
+  font-weight: 700;
+  border-radius: 10px;
+  perspective: 1000px;
+
+  &.flipped {
+    .inner-card {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .inner-card {
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
+    @include aspect-ratio(325, 204);
+  }
+
+  .front,
+  .back {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 40px;
+    backface-visibility: hidden;
+    background: url("../assets/card-bg.jpg") right no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(black, 0.3);
+  }
+
+  .back {
+    transform: rotateY(180deg);
+
+    .strip {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 34px;
+      height: 20%;
+      background-color: rgba($black, 0.8);
+    }
+
+    .cvv-wrapper {
+      padding: 10px 15px;
+      display: block;
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      top: 50%;
+      height: 20%;
+      border-radius: 5px;
+      background-color: $white;
+      text-align: right;
+      transform: translateY(-50%);
+      color: $grey;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .cvv-label-text {
+      display: block;
+    }
+  }
+
+  .card-header {
+    display: flex;
+
+    .logo {
+      width: 50%;
+      margin-left: auto;
+      max-width: 90px;
+      height: 50px;
+      text-align: right;
+
+      img {
+        max-width: 100%;
+        height: auto;
+
+        &.mastercard {
+          height: 52px;
+        }
+      }
+    }
+
+    .chip {
+      width: 50%;
+      text-align: left;
+
+      img {
+        margin-top: 10px;
+        width: 30px;
+      }
+    }
+  }
+
+  .card-body {
+    margin-top: 25px;
+  }
+
+  .card-number {
+    display: flex;
+    overflow: hidden;
+    height: 38px;
+
+    span {
+      font-size: 30px;
+      flex: 1;
+    }
+
+    .card-item {
+      width: 16px;
+      display: inline-block;
+    }
+  }
+
+  .card-footer {
+    margin-top: 38px;
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      display: block;
+    }
+
+    .name {
+      width: 50%;
+      text-align: left;
+    }
+
+    .card-holder-name-label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .card-holder-full-name {
+      &.empty {
+        position: absolute;
+      }
+
+      &.entered {
+        display: inline;
+      }
+    }
+
+    .card-date-label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .card-holder-full-name {
+      display: block;
+      max-width: 100%;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      > span {
+        display: block;
+        max-width: 100%;
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    .date {
+      text-align: right;
+
+      label {
+        display: inline;
+      }
+
+      .dates-wrapper {
+        text-align: center;
+      }
+    }
+  }
+}
