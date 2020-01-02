@@ -1,4 +1,4 @@
-# vue-credit-card
+# Vue Credit Card
 
 ## Project setup
 ```
